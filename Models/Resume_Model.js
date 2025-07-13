@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const validator = require("validator")
 
 const resumeSchema = new mongoose.Schema({
     user: {
@@ -45,9 +46,6 @@ const resumeSchema = new mongoose.Schema({
     },
     github: {
         type: String,
-        required: true,
-        unique: true,
-        maxLength: 50,
         trim: true
 
     },
@@ -57,7 +55,7 @@ const resumeSchema = new mongoose.Schema({
     },
     summary: {
         type: String,
-        maxLength: 50,
+        maxLength: 200,
         trim: true,
     },
     skills: {
@@ -76,11 +74,11 @@ const resumeSchema = new mongoose.Schema({
             },
             duration: {
                 type: String,
-                maxLength: 18,
+                maxLength: 20,
             },
             description: {
                 type: String,
-                maxLength: 35,
+                maxLength: 200,
             }
         }
     ],
