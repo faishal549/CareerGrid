@@ -44,5 +44,34 @@ const createOrUpdateResume = async (req, res) => {
     }
 }
 
+const deleteUserResume = async (req, res) => {
+    try {
+        const userId = req.user._id
+        const deleteResume = await Resume.findOneAndDelete({ user: userId })
+        if (!deleteResume) {
+            return res.status(404).json({ message: "No Resume Found" })
+        } else {
+            return res.status(200).json({ message: "Resume deleted successfully" })
+        }
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ message: "server error", error: error.message })
+    }
+}
 
-module.exports = { createOrUpdateResume }
+const getMyResume = async (req, res) => {
+    try {
+        const userId = req.user._id
+        const myResume = await Resume.findOne({ user: userId })
+        if (!myResume) {
+            return res.status(404).json({ message: "No Resume Created" })
+        } else {
+            return res.status(200).json({ resume: myResume })
+        }
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ message: "server error", error: error.message })
+    }
+}
+
+module.exports = { createOrUpdateResume, deleteUserResume, getMyResume }
