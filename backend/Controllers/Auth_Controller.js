@@ -49,7 +49,14 @@ const login = async (req, res) => {
                 {
                     message: "Logged successfully!",
                     token: token,
-                    id: isEmailExist._id.toString()
+                    user: {
+                        id: isEmailExist._id.toString(),
+                        firstname: isEmailExist.firstname,
+                        lastname: isEmailExist.lastname,
+                        email: isEmailExist.email,
+                        contact: isEmailExist.contact
+                    }
+
 
                 })
         } else {
