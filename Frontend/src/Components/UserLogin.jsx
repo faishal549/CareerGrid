@@ -1,0 +1,49 @@
+import { useState } from "react"
+
+const UserLogin = () => {
+    const [isSignup, setIsSignup] = useState(false)
+    return (
+        <>
+            <section className="w-2xl mx-auto my-5 py-15 bg-gray-900 rounded-lg">
+                <h1 className="text-center font-medium text-blue-500 text-2xl">{isSignup ? "SIGN-UP" : "SIGN-IN"}</h1>
+                <form className="flex flex-col px-15">
+                    {isSignup && (
+                        <>
+                            <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-5">FIRSTNAME</label>
+                            <input type="text"
+                                className="border-0 outline-0 bg-gray-800 px-3 py-3 rounded-sm text-gray-300 text-lg my-2 font-medium w-lg h-[2.5rem] mx-auto" />
+
+                            <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-5">LASTNAME</label>
+                            <input type="text"
+                                className="border-0 outline-0 bg-gray-800 px-3 py-3 rounded-sm text-gray-300 text-lg my-2 font-medium w-lg h-[2.5rem] mx-auto" />
+                        </>)}
+
+                    <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-5">EMAIL</label>
+                    <input type="email"
+                        className="border-0 outline-0 bg-gray-800 px-3 py-3 rounded-sm text-gray-300 text-lg my-2 font-medium w-lg h-[2.5rem] mx-auto" />
+                    {isSignup && (<>
+                        <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-5">CONTACT</label>
+                        <input type="text"
+                            className="border-0 outline-0 bg-gray-800 px-3 py-3 rounded-sm text-gray-300 text-lg my-2 font-medium w-lg h-[2.5rem] mx-auto"
+                        />
+
+                    </>)}
+
+
+                    <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-5">PASSWORD</label>
+                    <input type="password"
+                        className="border-0 outline-0 bg-gray-800 px-3 py-3 rounded-sm text-gray-300 text-lg my-2 font-medium w-lg h-[2.5rem] mx-auto"
+                    />
+
+
+                    <button className="text-center px-4 py-2 bg-blue-500 font-bold w-lg mx-auto rounded-sm text-gray-300 tracking-wider cursor-pointer hover:bg-blue-600">SUBMIT</button>
+
+                </form>
+                <p className="text-center my-5 text-gray-300 font-bold hover:text-blue-600 cursor-pointer" onClick={() => setIsSignup(!isSignup)}>{isSignup ? "Existing user  ? Login" : "New User ? Signup"}</p>
+            </section>
+        </>
+    )
+}
+
+
+export default UserLogin
