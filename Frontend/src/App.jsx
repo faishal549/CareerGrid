@@ -8,6 +8,61 @@ import Login from './Components/UserLogin'
 import appStore from './utils/store/appStore'
 import { Provider } from "react-redux"
 import Dashboard from './Components/Dashboard'
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { addUser } from './utils/store/userSlice';
+import TabForm from './Components/TabForm';
+
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
+const AppWrapper = () => {
+  const dispatch = useDispatch()
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await axios.get(`${BASE_URL}/api/user`, { withCredentials: true })
+        console.log("resfrom get", res)
+        dispatch(addUser(res.data.user))
+      } catch (error) {
+        console.log("Not logged in, or session expired");
+
+      } finally {
+        setLoading(false)
+      }
+    }
+    checkAuth()
+  }, [dispatch])
+
+  if (loading) return <h1 className="text-center text4xl font-bold text-blue-600">Loading...</h1>
+  return (
+    <>
+      <BrowserRouter basename="/">
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/userlogin" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/resume" element={<TabForm />} />
+          </Route>
+        </Routes>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark" // optional: "light" | "colored"
+        />
+      </BrowserRouter>
+
+    </>
+
+  )
+}
 function App() {
 
 
@@ -15,25 +70,7 @@ function App() {
     <>
       <Provider store={appStore}>
 
-        <BrowserRouter basename="/">
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/userlogin" element={<Login />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-            </Route>
-          </Routes>
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            closeOnClick
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="dark" // optional: "light" | "colored"
-          />
-        </BrowserRouter>
+        <AppWrapper />
       </Provider>
     </>
   )

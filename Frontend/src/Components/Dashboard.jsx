@@ -1,8 +1,13 @@
+import ProfileCard from "./ProfileCard"
+import ResumeSection from "./ResumeSection"
 
 const Dashboard = () => {
     return (
         <>
-            <h1>Welcome to dashboard</h1>
+            <main className="w-[80%] mx-auto flex flex-row gap-5">
+                <ProfileCard />
+                <ResumeSection />
+            </main>
         </>
     )
 }

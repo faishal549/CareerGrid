@@ -21,7 +21,8 @@ const register = async (req, res) => {
                     firstname: createUser.firstname,
                     lastname: createUser.lastname,
                     email: createUser.email,
-                    contact: createUser.contact
+                    contact: createUser.contact,
+                    photo: createUser.photo
                 },
                 token: token
             })
@@ -54,7 +55,8 @@ const login = async (req, res) => {
                         firstname: isEmailExist.firstname,
                         lastname: isEmailExist.lastname,
                         email: isEmailExist.email,
-                        contact: isEmailExist.contact
+                        contact: isEmailExist.contact,
+                        photo: isEmailExist.photo
                     }
 
 
@@ -81,7 +83,7 @@ const logout = async (req, res) => {
 const userData = async (req, res) => {
     try {
         const data = req.user
-        return res.status(201).json({ data: data })
+        return res.status(201).json({ user: data })
     } catch (error) {
         return res.status(401).json({ message: "Unauthorized User" })
     }

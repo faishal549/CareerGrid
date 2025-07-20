@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios"
 import { removeUser } from "../utils/store/userSlice";
 import { toast } from 'react-toastify';
@@ -41,7 +41,18 @@ const Header = () => {
                     </Link>
                     {/* <h1 className="text-xl font-semibold text-blue-600">CareerGrid</h1> */}
                 </div>
-                {!userData && <div className="relative">
+
+                {
+                    (userData) && <ul className="flex flex-row gap-10">
+                        <NavLink to="/" className={({ isActive }) =>
+                            isActive ? "bg-blue-100 text-blue-600 px-4 py-2 rounded font-semibold" : "text-blue-600 hover:bg-blue-100 px-4 py-2 rounded font-semibold"
+                        }> <li>Home</li></NavLink>
+                        <NavLink to="/dashboard" className={({ isActive }) =>
+                            isActive ? "bg-blue-100 text-blue-600 px-4 py-2 rounded font-semibold" : "text-blue-600 hover:bg-blue-100 px-4 py-2 rounded font-semibold"
+                        }> <li>Dashboard</li></NavLink>
+                    </ul>
+                }
+                {(!userData) && <div className="relative">
 
                     <button
                         onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -72,13 +83,14 @@ const Header = () => {
                     )}
                 </div>
                 }
-                {userData && <div className="relative">
+                {(userData) && <div className="relative">
 
                     <button
                         onClick={() => setDropdownOpen(!dropdownOpen)}
-                        className=" cursor-pointer px-4 py-2 bg-blue-900 hover:bg-blue-800 text-white font-medium rounded-md transition duration-200"
+
                     >
-                        {userData.user.firstname} {userData.user.lastname} ▼
+                        {/* {userData?.firstname} {userData?.lastname} ▼ */}
+                        <img src={userData?.photo} alt="profileImg" className="w-10 h-10" />
                     </button>
 
                     {dropdownOpen && (

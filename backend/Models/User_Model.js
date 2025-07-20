@@ -33,7 +33,7 @@ const userRegistrationSchema = new mongoose.Schema({
     },
     photo: {
         type: String,
-        default: "https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg"
+        default: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_COfMzaXFvUkyxHUw6bCb9EMNP9tNufE_uQ&s"
     },
     contact: {
         type: String,

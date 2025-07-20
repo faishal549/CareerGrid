@@ -29,7 +29,7 @@ const UserLogin = () => {
             if (message) return
             const res = await axios.post(`${BASE_URL}/api/register`, user, { withCredentials: true })
             console.log(res)
-            dispatch(addUser(res.data))
+            dispatch(addUser(res.data.user))
             if (res.status === 200) {
                 navigate("/dashboard")
                 toast.success("Registration Successfull!")
@@ -50,7 +50,7 @@ const UserLogin = () => {
         try {
             const res = await axios.post(`${BASE_URL}/api/login`, user, { withCredentials: true })
             console.log(res)
-            dispatch(addUser(res.data))
+            dispatch(addUser(res.data.user))
             if (res.status === 200) {
                 navigate("/dashboard")
                 toast.success("Loging Successfull!")
