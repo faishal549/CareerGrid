@@ -1,4 +1,28 @@
-const Skills = () => {
+import { useState } from "react"
+
+const Skills = ({ data, setData }) => {
+    const { skills, summary } = data
+    const [skillInput, setSkillInput] = useState("")
+
+
+    const handleInputChange = (e) => {
+        setData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
+    const addSkill = (e) => {
+        if (skillInput.trim() === "") return
+        setData((prev) => ({
+            ...prev,
+            skills: [...prev.skills, skillInput.trim()]
+        }))
+        setSkillInput("")
+    }
+    const removeSkill = (index) => {
+        const updatedSkills = skills.filter((_, i) => i !== index)
+        setData((prev) => ({
+            ...prev,
+            skills: updatedSkills
+        }))
+    }
     return (
         <>
 
@@ -13,15 +37,29 @@ const Skills = () => {
                             type="text"
                             className="flex-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
                             placeholder="e.g., React, Node.js"
+
+                            value={skillInput}
+                            onChange={(e) => setSkillInput(e.target.value)}
                         />
                         <button
                             type="button"
                             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-                        >
+                            onClick={addSkill}>
                             Add
                         </button>
+
                     </div>
                 </div>
+                <ul className="flex flex-row flex-wrap">
+                    {
+                        skills.map((v, i) => {
+                            return <li key={i}
+                                className="px-4 py-2 rounded-3xl bg-gray-200 mx-2 my-1 capitalize text-sm text-blue-700">{v}
+                                <button className="mx-3 text-lg text-red-600 font-bold cursor-pointer" onClick={() => removeSkill(i)}>X</button>
+                            </li>
+                        })
+                    }
+                </ul>
 
                 {/* Summary Text Area */}
                 <div className="mb-4">
@@ -30,15 +68,13 @@ const Skills = () => {
                         className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
                         rows={5}
                         placeholder="Write a brief summary about your experience, strengths, and goals."
+                        name="summary"
+                        value={summary}
+                        onChange={handleInputChange}
                     ></textarea>
                 </div>
 
-                <button
-                    type="submit"
-                    className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
-                >
-                    Save
-                </button>
+
             </div>
 
 

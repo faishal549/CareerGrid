@@ -1,18 +1,38 @@
 import { useState } from "react";
 
-const WorkExperience = () => {
+const WorkExperience = ({ data, setData }) => {
 
-    const [experienceSections, setExperienceSections] = useState([{}]);
+
+    const { experience } = data
+
+    const handleInputChange = (e, index) => {
+        const { name, value } = e.target
+        const updatedExperience = [...experience]
+        updatedExperience[index][name] = value
+        setData((prev) => ({
+            ...prev,
+            experience: updatedExperience
+        }))
+    }
 
     const handleAddExperience = () => {
-        setExperienceSections([...experienceSections, {}]);
+        const newExperience = {
+            company: "",
+            role: "",
+            duration: "",
+            description: ""
+        }
+        setData((prev) => ({
+            ...prev,
+            experience: [...prev.experience, newExperience]
+        }))
     };
     return (
         <>
             <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
                 <h2 className="text-2xl font-semibold mb-6 text-blue-600">Work Experience</h2>
 
-                {experienceSections.map((_, index) => (
+                {experience.map((_, index) => (
                     <div key={index} className="border border-gray-300 p-4 rounded-md mb-6">
                         <h3 className="text-lg font-medium mb-4 text-gray-700">Experience {index + 1}</h3>
 
@@ -24,6 +44,9 @@ const WorkExperience = () => {
                                 maxLength={18}
                                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
                                 placeholder="e.g. Google"
+                                name="company"
+                                value={data.experience[index].company}
+                                onChange={(e) => handleInputChange(e, index)}
                             />
                         </div>
 
@@ -35,6 +58,9 @@ const WorkExperience = () => {
                                 maxLength={18}
                                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
                                 placeholder="e.g. Software Engineer"
+                                name="role"
+                                value={data.experience[index].role}
+                                onChange={(e) => handleInputChange(e, index)}
                             />
                         </div>
 
@@ -46,6 +72,9 @@ const WorkExperience = () => {
                                 maxLength={20}
                                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
                                 placeholder="e.g. Jan 2021 - Dec 2023"
+                                name="duration"
+                                value={data.experience[index].duration}
+                                onChange={(e) => handleInputChange(e, index)}
                             />
                         </div>
 
@@ -57,6 +86,9 @@ const WorkExperience = () => {
                                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
                                 rows={4}
                                 placeholder="Describe your work, tools used, achievements, etc."
+                                name="description"
+                                value={data.experience[index].description}
+                                onChange={(e) => handleInputChange(e, index)}
                             ></textarea>
                         </div>
                     </div>

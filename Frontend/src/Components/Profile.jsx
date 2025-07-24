@@ -1,4 +1,10 @@
-const Profile = () => {
+const Profile = ({ data, setData }) => {
+    const { firstname, lastname, age, gender, email, contact, location, githubId } = data
+
+    const handleInputChange = (e) => {
+
+        setData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
     return (
         <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-2xl font-semibold mb-6 text-blue-600">Profile</h2>
@@ -11,6 +17,9 @@ const Profile = () => {
                         type="text"
                         className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none"
                         placeholder="e.g. Faishal"
+                        name="firstname"
+                        value={firstname}
+                        onChange={handleInputChange}
                     />
                 </div>
 
@@ -21,6 +30,9 @@ const Profile = () => {
                         type="text"
                         className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none"
                         placeholder="e.g. Khan"
+                        name="lastname"
+                        value={lastname}
+                        onChange={handleInputChange}
                     />
                 </div>
 
@@ -31,17 +43,21 @@ const Profile = () => {
                         type="number"
                         className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none"
                         placeholder="e.g. 25"
+                        name="age"
+                        value={age}
+                        onChange={handleInputChange}
                     />
+
                 </div>
 
                 {/* Gender */}
                 <div>
                     <label className="block text-gray-700 mb-1">Gender</label>
-                    <select className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none">
+                    <select className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none" name="gender" value={gender} onChange={handleInputChange}>
                         <option value="">Select</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Other</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
 
@@ -52,6 +68,9 @@ const Profile = () => {
                         type="email"
                         className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none"
                         placeholder="e.g. user@example.com"
+                        name="email"
+                        value={email}
+                        onChange={handleInputChange}
                     />
                 </div>
 
@@ -62,6 +81,9 @@ const Profile = () => {
                         type="tel"
                         className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none"
                         placeholder="e.g. 9876543210"
+                        name="contact"
+                        value={contact}
+                        onChange={handleInputChange}
                     />
                 </div>
 
@@ -72,6 +94,9 @@ const Profile = () => {
                         type="text"
                         className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none"
                         placeholder="e.g. New Delhi"
+                        name="location"
+                        value={location}
+                        onChange={handleInputChange}
                     />
                 </div>
 
@@ -82,6 +107,9 @@ const Profile = () => {
                         type="text"
                         className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none"
                         placeholder="e.g. faishaldev"
+                        name="githubId"
+                        value={githubId}
+                        onChange={handleInputChange}
                     />
                 </div>
             </div>

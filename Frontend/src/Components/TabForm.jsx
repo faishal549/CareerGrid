@@ -7,6 +7,36 @@ import WorkExperience from "./WorkExperience"
 
 const TabForm = () => {
     const [active, setActive] = useState(0)
+    const [data, setData] = useState({
+        firstname: "",
+        lastname: "",
+        age: "",
+        gender: "",
+        email: "",
+        contact: "",
+        location: "",
+        githubId: "",
+        skills: [],
+        summary: "",
+        experience: [{
+            company: "",
+            role: "",
+            duration: "",
+            description: ""
+        }],
+        education: [{
+            instituion: "",
+            degree: "",
+            year: ""
+        }],
+        projects: [{
+            title: "",
+            description: "",
+            github: "",
+            livelink: ""
+        }]
+
+    })
     const tabs = [
         {
             name: "Profile",
@@ -29,6 +59,16 @@ const TabForm = () => {
             component: Project,
         }
     ]
+    const handleNext = () => {
+        setActive((prev) => prev + 1)
+    }
+    const handlePrevious = () => {
+        setActive(active - 1)
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(data)
+    }
     const TabComponent = tabs[active].component
     return (
         <>
@@ -40,9 +80,13 @@ const TabForm = () => {
                     })
                 }
             </div>
-            <TabComponent />
-            <button className="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition">Next</button>
-            <button className="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition">Previous</button>
+            <TabComponent data={data} setData={setData} />
+            <div className="flex flex-row justify-center gap-5 my-3">
+                {active > 0 && <button className="bg-green-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition" onClick={handlePrevious}>Previous</button>}
+
+                {active < 4 && <button className="bg-green-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition" onClick={handleNext}>Next</button>}
+                {active === 4 && <button className="bg-green-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition" onClick={handleSubmit}>Submit</button>}
+            </div>
         </>
     )
 }

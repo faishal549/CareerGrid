@@ -1,17 +1,38 @@
 import { useState } from "react";
 
-const Education = () => {
-    const [educationSections, setEducationSections] = useState([{}]);
+const Education = ({ data, setData }) => {
+    const { education } = data
+    const handleInputChange = (e, index) => {
+        const { name, value } = e.target
+        const updatedEducation = [...education]
+        updatedEducation[index][name] = value;
+        setData((prev) => ({
+            ...prev,
+            education: updatedEducation
+        }))
+
+    }
 
     const handleAddEducation = () => {
-        setEducationSections([...educationSections, {}]);
+        const newEducation = {
+            institution: "",
+            degree: "",
+            year: ""
+
+        }
+        setData((prev) => ({
+            ...prev,
+            education: [...prev.education, newEducation]
+        }))
+
+
     };
 
     return (
         <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-2xl font-semibold mb-6 text-blue-600">Education</h2>
 
-            {educationSections.map((_, index) => (
+            {education.map((_, index) => (
                 <div key={index} className="border border-gray-300 p-4 rounded-md mb-6">
                     <h3 className="text-lg font-medium mb-4 text-gray-700">Education {index + 1}</h3>
 
@@ -23,6 +44,9 @@ const Education = () => {
                             maxLength={18}
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
                             placeholder="e.g. Delhi University"
+                            name="institution"
+                            value={data.education[index].institution}
+                            onChange={(e) => handleInputChange(e, index)}
                         />
                     </div>
 
@@ -34,6 +58,9 @@ const Education = () => {
                             maxLength={18}
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
                             placeholder="e.g. B.Sc Computer Science"
+                            name="degree"
+                            value={data.education[index].degree}
+                            onChange={(e) => handleInputChange(e, index)}
                         />
                     </div>
 
@@ -45,6 +72,9 @@ const Education = () => {
                             maxLength={6}
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
                             placeholder="e.g. 2023"
+                            name="year"
+                            value={data.education[index].year}
+                            onChange={(e) => handleInputChange(e, index)}
                         />
                     </div>
                 </div>

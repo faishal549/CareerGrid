@@ -1,10 +1,29 @@
 import { useState } from "react";
 
-const Project = () => {
-    const [projects, setProjects] = useState([{}]);
+const Project = ({ data, setData }) => {
+    const { projects } = data
+
+    const handleInputChange = (e, index) => {
+        const { name, value } = e.target
+        const updatedProjects = [...projects]
+        updatedProjects[index][name] = value
+        setData((prev) => ({
+            ...prev,
+            projects: updatedProjects
+        }))
+    }
 
     const handleAddProject = () => {
-        setProjects([...projects, {}]);
+        const newProjects = {
+            title: "",
+            livelink: "",
+            github: "",
+            description: ""
+        }
+        setData((prev) => ({
+            ...prev,
+            projects: [...prev.projects, newProjects]
+        }))
     };
 
     return (
@@ -22,6 +41,9 @@ const Project = () => {
                             type="text"
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
                             placeholder="e.g. CareerGrid"
+                            name="title"
+                            value={data.projects[index].title}
+                            onChange={(e) => handleInputChange(e, index)}
                         />
                     </div>
 
@@ -32,16 +54,21 @@ const Project = () => {
                             type="text"
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
                             placeholder="e.g. https://github.com/faishal/careergrid"
+                            name="livelink"
+                            value={data.projects[index].livelink}
+                            onChange={(e) => handleInputChange(e, index)}
                         />
                     </div>
 
                     {/* Tech Stack */}
                     <div className="mb-4">
-                        <label className="block text-gray-600 mb-1">Tech Stack</label>
+                        <label className="block text-gray-600 mb-1">Github</label>
                         <input
                             type="text"
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
-                            placeholder="e.g. React, Node.js, MongoDB"
+                            name="github"
+                            value={data.projects[index].github}
+                            onChange={(e) => handleInputChange(e, index)}
                         />
                     </div>
 
@@ -52,6 +79,9 @@ const Project = () => {
                             rows={3}
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
                             placeholder="Brief description about the project..."
+                            name="description"
+                            value={data.projects[index].description}
+                            onChange={(e) => handleInputChange(e, index)}
                         ></textarea>
                     </div>
                 </div>
