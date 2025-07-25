@@ -1,4 +1,4 @@
-const Profile = ({ data, setData }) => {
+const Profile = ({ data, setData, error }) => {
     const { firstname, lastname, age, gender, email, contact, location, githubId } = data
 
     const handleInputChange = (e) => {
@@ -21,6 +21,7 @@ const Profile = ({ data, setData }) => {
                         value={firstname}
                         onChange={handleInputChange}
                     />
+                    <p className="text-sm text-red-600 capitalize">{error.firstname}</p>
                 </div>
 
                 {/* Last Name */}
@@ -34,6 +35,8 @@ const Profile = ({ data, setData }) => {
                         value={lastname}
                         onChange={handleInputChange}
                     />
+                    <p className="text-sm text-red-600 capitalize">{error.lastname}</p>
+
                 </div>
 
                 {/* Age */}
@@ -47,7 +50,7 @@ const Profile = ({ data, setData }) => {
                         value={age}
                         onChange={handleInputChange}
                     />
-
+                    <p className="text-sm text-red-600 capitalize">{error.age}</p>
                 </div>
 
                 {/* Gender */}
@@ -59,6 +62,7 @@ const Profile = ({ data, setData }) => {
                         <option value="female">Female</option>
                         <option value="other">Other</option>
                     </select>
+                    <p className="text-sm text-red-600 capitalize">{error.gender}</p>
                 </div>
 
                 {/* Email */}
@@ -72,6 +76,7 @@ const Profile = ({ data, setData }) => {
                         value={email}
                         onChange={handleInputChange}
                     />
+                    <p className="text-sm text-red-600 capitalize">{error.email}</p>
                 </div>
 
                 {/* Contact */}
@@ -85,6 +90,7 @@ const Profile = ({ data, setData }) => {
                         value={contact}
                         onChange={handleInputChange}
                     />
+                    <p className="text-sm text-red-600 capitalize">{error.contact}</p>
                 </div>
 
                 {/* Location */}
@@ -98,6 +104,7 @@ const Profile = ({ data, setData }) => {
                         value={location}
                         onChange={handleInputChange}
                     />
+                    <p className="text-sm text-red-600 capitalize">{error.location}</p>
                 </div>
 
                 {/* GitHub ID */}

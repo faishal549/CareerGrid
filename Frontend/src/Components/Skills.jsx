@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const Skills = ({ data, setData }) => {
+const Skills = ({ data, setData, error }) => {
     const { skills, summary } = data
     const [skillInput, setSkillInput] = useState("")
 
@@ -49,6 +49,7 @@ const Skills = ({ data, setData }) => {
                         </button>
 
                     </div>
+                    <p className="text-sm text-red-600 capitalize">{error.skills}</p>
                 </div>
                 <ul className="flex flex-row flex-wrap">
                     {
@@ -72,6 +73,7 @@ const Skills = ({ data, setData }) => {
                         value={summary}
                         onChange={handleInputChange}
                     ></textarea>
+                    <p className="text-sm text-red-600 capitalize">{error.summary}</p>
                 </div>
 
 
