@@ -45,7 +45,7 @@ const login = async (req, res) => {
         const verifyPassword = await isEmailExist.comparePassword(password)
         if (verifyPassword) {
             const token = await isEmailExist.generateToken()
-            res.cookie("token", token, { expires: new Date(Date.now() + 3600000), httpOnly: true, secure: true })
+            res.cookie("token", token, { expires: new Date(Date.now() + 3600000), httpOnly: true, })
             return res.status(200).json(
                 {
                     message: "Logged successfully!",

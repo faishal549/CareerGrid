@@ -1,114 +1,46 @@
-import { useState } from "react"
-import Education from "./Education"
-import Profile from "./Profile"
-import Project from "./Project"
-import Skills from "./Skills"
-import WorkExperience from "./WorkExperience"
+import { useEffect, useState } from "react"
+import useTabs from "../utils/useTabs.js"
+import axios from "axios"
+const BASE_URL = import.meta.env.VITE_BASE_URL
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { createResume } from "../utils/store/resumeSlice.js"
+import { toast } from "react-toastify"
 
-const TabForm = () => {
+const TabForm = ({ initialData }) => {
     const [active, setActive] = useState(0)
-    const [error, setError] = useState({})
-    const [data, setData] = useState({
-        firstname: "",
-        lastname: "",
-        age: "",
-        gender: "",
-        email: "",
-        contact: "",
-        location: "",
-        githubId: "",
-        skills: [],
-        summary: "",
-        experience: [{
-            company: "",
-            role: "",
-            duration: "",
-            description: ""
-        }],
-        education: [{
-            instituion: "",
-            degree: "",
-            year: ""
-        }],
-        projects: [{
-            title: "",
-            description: "",
-            github: "",
-            livelink: ""
-        }]
+    const { data, setData, error, setError, tabs } = useTabs()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    })
-    const tabs = [
-        {
-            name: "Profile",
-            component: Profile,
-            validate: () => {
-                const err = {}
-                if (!data.firstname || data.firstname.length < 3) {
-                    err.firstname = "Firstname should be atlest 3 charector"
-                }
-                if (!data.lastname) {
-                    err.lastname = "Lastname required if not please enter fullstop"
-                }
-                if (!data.email || data.email.length < 10) {
-                    err.email = "Invalid Email"
-                }
-                if (!data.gender) {
-                    err.gender = "Gender is missing"
-                }
-                if (!data.age || data.age < 18) {
-                    err.age = "Invalid age"
-                }
-                if (!data.contact || data.contact < 10) {
-                    err.contact = "Invalid contact"
-                }
-                if (!data.location) {
-                    err.location = "Location is missing"
-                }
-                setError(err)
-                return err.firstname || err.email || err.gender || err.age || err.contact || err.contact ? false : true
-            }
-
-        },
-        {
-            name: "Skills",
-            component: Skills,
-            validate: () => {
-                const err = {}
-                if (data.skills.length === 0 || data.skills.length > 10) {
-                    err.skills = "Please enter minimum one skills , Skills should not be more than 10"
-                }
-                if (!data.summary || data.summary.length > 200) {
-                    err.summary = "Summary is required should not more than 200 charactor"
-                }
-                setError(err)
-                return err.skills || err.summary ? false : true
-            }
-        },
-        {
-            name: "WorkExperience",
-            component: WorkExperience,
-        },
-        {
-            name: "Education",
-            component: Education,
-
-
-        },
-        {
-            name: "Project",
-            component: Project,
+    useEffect(() => {
+        if (initialData) {
+            setData(initialData)
         }
-    ]
+    }, [initialData])
+
     const handleNext = () => {
         tabs[active].validate() && setActive((prev) => prev + 1)
     }
     const handlePrevious = () => {
         setActive(active - 1)
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(data)
+        try {
+            const res = await axios.post(`${BASE_URL}/api/user/resume`, data, { withCredentials: true })
+            console.log(res)
+            dispatch(createResume(res.data.resume))
+            if (res.status === 200) {
+
+                navigate("/dashboard")
+                toast.success("Resume Created!")
+            } else {
+                toast.error("Something went wrong")
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
     const TabComponent = tabs[active].component
     return (

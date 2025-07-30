@@ -5,7 +5,7 @@ const createOrUpdateResume = async (req, res) => {
         const userId = req.user._id
         const resumeData = req.body;
         //validation checks 
-        const requiredFields = ["firstname", "lastname", "email", "contact", "location", "age", "summary"]
+        const requiredFields = ["firstname", "lastname", "email", "gender", "contact", "location", "age", "summary"]
         for (let field of requiredFields) {
             if (!resumeData[field] || typeof resumeData[field] !== "string") {
                 return res.status(400).json({ message: `Invalid or missing field: ${field}` })

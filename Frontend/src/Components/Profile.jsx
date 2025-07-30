@@ -1,5 +1,5 @@
 const Profile = ({ data, setData, error }) => {
-    const { firstname, lastname, age, gender, email, contact, location, githubId } = data
+    const { firstname, lastname, age, gender, email, contact, location, github } = data
 
     const handleInputChange = (e) => {
 
@@ -114,8 +114,8 @@ const Profile = ({ data, setData, error }) => {
                         type="text"
                         className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none"
                         placeholder="e.g. faishaldev"
-                        name="githubId"
-                        value={githubId}
+                        name="github"
+                        value={github}
                         onChange={handleInputChange}
                     />
                 </div>

@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { addUser } from './utils/store/userSlice';
 import TabForm from './Components/TabForm';
+import UpdateExistingResume from './Components/UpdateExistingResume';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
 
@@ -45,6 +46,7 @@ const AppWrapper = () => {
             <Route path="/userlogin" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/resume" element={<TabForm />} />
+            <Route path="update-resume" element={<UpdateExistingResume />} />
           </Route>
         </Routes>
         <ToastContainer

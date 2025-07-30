@@ -53,6 +53,10 @@ const resumeSchema = new mongoose.Schema({
         type: String,
         maxLength: 3,
     },
+    gender: {
+        type: String,
+        required: true
+    },
     summary: {
         type: String,
         maxLength: 200,
@@ -78,7 +82,7 @@ const resumeSchema = new mongoose.Schema({
             },
             description: {
                 type: String,
-                maxLength: 200,
+                maxLength: 300,
             }
         }
     ],
@@ -106,7 +110,7 @@ const resumeSchema = new mongoose.Schema({
             },
             description: {
                 type: String,
-                maxLength: 50,
+                maxLength: 300,
             },
             github: {
                 type: String,
