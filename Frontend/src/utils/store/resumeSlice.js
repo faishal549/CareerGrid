@@ -6,9 +6,10 @@ const resumeSlice = createSlice({
     initialState: null,
     reducers: {
         createResume: (state, action) => action.payload,
-        addResume: (state, action) => action.payload
+        addResume: (state, action) => action.payload,
+        clearResume: () => null
     }
 })
 
-export const { createResume, addResume } = resumeSlice.actions
+export const { createResume, addResume, clearResume } = resumeSlice.actions
 export default resumeSlice.reducer

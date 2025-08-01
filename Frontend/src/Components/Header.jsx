@@ -4,11 +4,13 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios"
 import { removeUser } from "../utils/store/userSlice";
 import { toast } from 'react-toastify';
+import { clearResume } from "../utils/store/resumeSlice";
 const BASE_URL = import.meta.env.VITE_BASE_URL
 
 const Header = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const userData = useSelector((store) => store.user)
+    const userResume = useSelector((store) => store.resume)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     console.log("data", userData)
@@ -18,7 +20,7 @@ const Header = () => {
             const res = await axios.post(`${BASE_URL}/api/logout`, {}, { withCredentials: true })
             dispatch(removeUser())
             if (res.status === 200) {
-
+                dispatch(clearResume(userResume))
                 navigate("/")
                 setDropdownOpen(false)
                 toast.success("Logout Successfull !")
@@ -32,15 +34,36 @@ const Header = () => {
     }
     return (
         <>
-            <header className="flex items-center justify-between px-6  bg-white shadow-md relative">
+            <header className="flex items-center justify-between px-6  bg-base-100 text-base-content shadow-md relative">
                 <div className="logo">
                     <Link to="/">
-                        <img src="/src/assets/cg_logo.png"
+                        <img src="/src/assets/output-onlinepngtools.png"
                             alt="logo"
                             className="w-30 h-30" />
                     </Link>
                     {/* <h1 className="text-xl font-semibold text-blue-600">CareerGrid</h1> */}
                 </div>
+
+
+  
+
+  <label className="label cursor-pointer">
+   
+    <input
+      type="checkbox"
+      className="toggle"
+      defaultChecked={localStorage.getItem("theme") === "dark"}
+      onChange={(e) => {
+        const newTheme = e.target.checked ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+      }}
+    />
+  </label>
+
+
+
+
 
                 {
                     (userData) && <ul className="flex flex-row gap-10">

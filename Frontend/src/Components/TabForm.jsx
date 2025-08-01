@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { createResume } from "../utils/store/resumeSlice.js"
 import { toast } from "react-toastify"
 
-const TabForm = ({ initialData }) => {
+const TabForm = ({ initialData, onSubmit }) => {
     const [active, setActive] = useState(0)
     const { data, setData, error, setError, tabs } = useTabs()
     const dispatch = useDispatch()
@@ -27,19 +27,25 @@ const TabForm = ({ initialData }) => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
-        try {
-            const res = await axios.post(`${BASE_URL}/api/user/resume`, data, { withCredentials: true })
-            console.log(res)
-            dispatch(createResume(res.data.resume))
-            if (res.status === 200) {
+        if (onSubmit) {
+            onSubmit(data)
+        } else {
+            try {
 
-                navigate("/dashboard")
-                toast.success("Resume Created!")
-            } else {
-                toast.error("Something went wrong")
+                const res = await axios.post(`${BASE_URL}/api/user/resume`, data, { withCredentials: true })
+                console.log(res)
+                dispatch(createResume(res.data.resume))
+                if (res.status === 200) {
+
+                    navigate("/dashboard")
+                    toast.success("Resume Created!")
+                } else {
+                    toast.error("Something went wrong")
+                }
+
+            } catch (error) {
+                console.log(error)
             }
-        } catch (error) {
-            console.log(error)
         }
     }
     const TabComponent = tabs[active].component

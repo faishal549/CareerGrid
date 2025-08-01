@@ -15,7 +15,7 @@ const Profile = ({ data, setData, error }) => {
                     <label className="block text-gray-700 mb-1">First Name</label>
                     <input
                         type="text"
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none"
+                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                         placeholder="e.g. Faishal"
                         name="firstname"
                         value={firstname}
@@ -29,7 +29,7 @@ const Profile = ({ data, setData, error }) => {
                     <label className="block text-gray-700 mb-1">Last Name</label>
                     <input
                         type="text"
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none"
+                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                         placeholder="e.g. Khan"
                         name="lastname"
                         value={lastname}
@@ -44,7 +44,7 @@ const Profile = ({ data, setData, error }) => {
                     <label className="block text-gray-700 mb-1">Age</label>
                     <input
                         type="number"
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none"
+                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                         placeholder="e.g. 25"
                         name="age"
                         value={age}
@@ -56,7 +56,7 @@ const Profile = ({ data, setData, error }) => {
                 {/* Gender */}
                 <div>
                     <label className="block text-gray-700 mb-1">Gender</label>
-                    <select className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none" name="gender" value={gender} onChange={handleInputChange}>
+                    <select className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none text-gray-700" name="gender" value={gender} onChange={handleInputChange}>
                         <option value="">Select</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -70,7 +70,7 @@ const Profile = ({ data, setData, error }) => {
                     <label className="block text-gray-700 mb-1">Email</label>
                     <input
                         type="email"
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none"
+                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                         placeholder="e.g. user@example.com"
                         name="email"
                         value={email}
@@ -84,7 +84,7 @@ const Profile = ({ data, setData, error }) => {
                     <label className="block text-gray-700 mb-1">Contact</label>
                     <input
                         type="tel"
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none"
+                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                         placeholder="e.g. 9876543210"
                         name="contact"
                         value={contact}
@@ -98,7 +98,7 @@ const Profile = ({ data, setData, error }) => {
                     <label className="block text-gray-700 mb-1">Location</label>
                     <input
                         type="text"
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none"
+                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                         placeholder="e.g. New Delhi"
                         name="location"
                         value={location}
@@ -112,7 +112,7 @@ const Profile = ({ data, setData, error }) => {
                     <label className="block text-gray-700 mb-1">GitHub ID</label>
                     <input
                         type="text"
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none"
+                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                         placeholder="e.g. faishaldev"
                         name="github"
                         value={github}

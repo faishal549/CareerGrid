@@ -31,7 +31,7 @@ const createOrUpdateResume = async (req, res) => {
         const existingResume = await Resume.findOne({ user: userId })
         if (existingResume) {
             //update
-            const updateResume = await Resume.findOneAndUpdate({ user: userId }, resumeData, { new: true })
+            const updateResume = await Resume.findOneAndUpdate({ user: userId }, { $set: resumeData }, { new: true, runValidators: true })
             return res.status(200).json({ message: "Resume updated successfully", resume: updateResume })
         } else {
             // create new

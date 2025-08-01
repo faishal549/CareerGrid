@@ -42,7 +42,7 @@ const Education = ({ data, setData }) => {
                         <input
                             type="text"
                             maxLength={18}
-                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
+                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                             placeholder="e.g. Delhi University"
                             name="institution"
                             value={data.education[index].institution}
@@ -56,7 +56,7 @@ const Education = ({ data, setData }) => {
                         <input
                             type="text"
                             maxLength={18}
-                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
+                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                             placeholder="e.g. B.Sc Computer Science"
                             name="degree"
                             value={data.education[index].degree}
@@ -70,7 +70,7 @@ const Education = ({ data, setData }) => {
                         <input
                             type="text"
                             maxLength={6}
-                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
+                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                             placeholder="e.g. 2023"
                             name="year"
                             value={data.education[index].year}

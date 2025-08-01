@@ -39,7 +39,7 @@ const Project = ({ data, setData }) => {
                         <label className="block text-gray-600 mb-1">Project Title</label>
                         <input
                             type="text"
-                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
+                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                             placeholder="e.g. CareerGrid"
                             name="title"
                             value={data.projects[index].title}
@@ -52,7 +52,7 @@ const Project = ({ data, setData }) => {
                         <label className="block text-gray-600 mb-1">Project Link</label>
                         <input
                             type="text"
-                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
+                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                             placeholder="e.g. https://github.com/faishal/careergrid"
                             name="livelink"
                             value={data.projects[index].livelink}
@@ -65,7 +65,7 @@ const Project = ({ data, setData }) => {
                         <label className="block text-gray-600 mb-1">Github</label>
                         <input
                             type="text"
-                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
+                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                             name="github"
                             value={data.projects[index].github}
                             onChange={(e) => handleInputChange(e, index)}
@@ -77,7 +77,7 @@ const Project = ({ data, setData }) => {
                         <label className="block text-gray-600 mb-1">Description</label>
                         <textarea
                             rows={3}
-                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
+                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                             placeholder="Brief description about the project..."
                             name="description"
                             value={data.projects[index].description}

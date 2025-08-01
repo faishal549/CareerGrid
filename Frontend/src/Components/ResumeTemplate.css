@@ -1,0 +1,84 @@
+.resume-template {
+  background: #ffffff;
+  color: #1f2937;
+  padding: 40px;
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 0 0 transparent;
+}
+
+.resume-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  margin-bottom: 8px;
+}
+
+.resume-contact {
+  font-size: 1rem;
+  color: #4b5563;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.resume-section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0f172a;
+  border-bottom: 2px solid #e5e7eb;
+  margin-top: 28px;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+}
+
+.resume-summary-text {
+  margin-bottom: 12px;
+  color: #374151;
+}
+
+.resume-list {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.resume-company {
+  font-weight: 600;
+  color: #1e40af;
+}
+
+.resume-role {
+  font-weight: 500;
+  color: #334155;
+}
+
+.resume-duration {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-top: 2px;
+  margin-bottom: 10px;
+}
+
+.resume-edu,
+.resume-project {
+  margin-bottom: 16px;
+}
+
+.resume-link {
+  color: #1d4ed8;
+  text-decoration: underline;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+@media print {
+  .resume-template {
+    box-shadow: none;
+    margin: 0 auto;
+    border: none;
+  }
+}

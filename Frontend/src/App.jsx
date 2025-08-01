@@ -14,12 +14,17 @@ import axios from 'axios';
 import { addUser } from './utils/store/userSlice';
 import TabForm from './Components/TabForm';
 import UpdateExistingResume from './Components/UpdateExistingResume';
+// import ResumePDF from './Components/ResumePDF';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
 
 const AppWrapper = () => {
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true)
+  useEffect(() => {
+  const savedTheme = localStorage.getItem("theme") || "light";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+}, []);
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -47,6 +52,7 @@ const AppWrapper = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/resume" element={<TabForm />} />
             <Route path="update-resume" element={<UpdateExistingResume />} />
+            {/* <Route path="resume-pdf" element={<ResumePDF />} /> */}
           </Route>
         </Routes>
         <ToastContainer
