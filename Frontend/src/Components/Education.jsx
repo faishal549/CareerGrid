@@ -45,7 +45,7 @@ const Education = ({ data, setData }) => {
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                             placeholder="e.g. Delhi University"
                             name="institution"
-                            value={data.education[index].institution}
+                            value={data.education[index].institution || ""}
                             onChange={(e) => handleInputChange(e, index)}
                         />
                     </div>

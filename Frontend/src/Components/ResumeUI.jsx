@@ -2,12 +2,35 @@
 
 import ResumeTemplate from "./ResumeTemplate";
 import DownloadPdfButton from "./DownloadPdfButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRef } from "react";
+import axios from "axios"
+import { useDispatch } from "react-redux";
+import { clearResume } from "../utils/store/resumeSlice";
+import { toast } from "react-toastify";
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
+
 
 const ResumeUI = ({ userResume }) => {
     // This ref will point to the DOM node for capture
     const resumeRef = useRef(null);
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const handleDeleteResume = async () => {
+        try {
+            const res = await axios.delete(`${BASE_URL}/api/user/delete/resume`, { withCredentials: true })
+            console.log(res)
+            dispatch(clearResume(userResume))
+            if (res.status === 200) {
+                toast.success("Resume Deleted")
+                navigate("/dashboard")
+            }
+        } catch (error) {
+            toast.error("Fail to Delete Resume")
+            console.log(error)
+        }
+    }
 
     return (
         <div className="flex gap-4">
@@ -27,7 +50,7 @@ const ResumeUI = ({ userResume }) => {
                         <button className="btn btn-info">Share Resume</button>
                     </li>
                     <li>
-                        <button className="btn btn-error">Delete</button>
+                        <button className="btn btn-error" onClick={handleDeleteResume}>Delete</button>
                     </li>
                 </ul>
             </aside>

@@ -1,21 +1,33 @@
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 
 const ProfileCard = () => {
-    const userData = useSelector((store) => store.user)
+    const userData = useSelector((store) => store.user);
+
     return (
-        <>
-            <div className="flex flex-col border-4 border-blue-500 px-15 py-5 my-10 rounded-2xl shadow-2xl bg-blue-200">
-                <div>
-                    <img src={userData.photo} alt="userPhoto" className="w-50 h-50 rounded-2xl" />
-                </div>
-                <div>
-                    <h1 className="text-2xl py-2 capitalize font-bold text-gray-700">{userData.firstname} {userData.lastname}</h1>
-                    <p className="text-xl py-1 text-gray-800">{userData.email}</p>
-                    <p className="text-xl py-1 text-gray-800">{userData.contact}</p>
-                </div>
-                <button className="px-4 py-2 rounded-xl bg-blue-800 text-white font-bold hover:bg-blue-900">EditProfile</button>
+        <div className="bg-white rounded-2xl shadow-lg border p-6 flex items-center gap-6 my-30">
+            {/* Image Section */}
+            <div>
+                <img
+                    src={userData.photo}
+                    alt="User"
+                    className="w-32 h-32 rounded-xl object-cover "
+                />
             </div>
-        </>
-    )
-}
-export default ProfileCard
+
+            {/* Details Section */}
+            <div className="flex-1">
+                <h2 className="text-2xl font-bold text-gray-800 capitalize">{userData.firstname} {userData.lastname}</h2>
+                <p className="text-gray-600 text-lg mt-1">{userData.email}</p>
+                <p className="text-gray-600 text-lg">{userData.contact}</p>
+
+                <div className="mt-4">
+                    <button className="bg-indigo-700 text-white px-4 py-2 rounded-lg hover:bg-indigo-800 transition-all">
+                        Edit Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default ProfileCard;
