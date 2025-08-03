@@ -28,7 +28,7 @@ const UserLogin = () => {
             setErrMessage(message)
             if (message) return
             const res = await axios.post(`${BASE_URL}/api/register`, user, { withCredentials: true })
-            console.log(res)
+            // console.log(res)
             dispatch(addUser(res.data.user))
             if (res.status === 200) {
                 navigate("/dashboard")
@@ -49,7 +49,7 @@ const UserLogin = () => {
         e.preventDefault()
         try {
             const res = await axios.post(`${BASE_URL}/api/login`, user, { withCredentials: true })
-            console.log(res)
+            // console.log(res)
             dispatch(addUser(res.data.user))
             if (res.status === 200) {
                 navigate("/dashboard")

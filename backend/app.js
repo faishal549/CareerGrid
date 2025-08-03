@@ -4,6 +4,7 @@ const app = express();
 const connectDatabase = require("./Utils/database")
 const AuthRouter = require("./Router/Auth_Route")
 const ResumeRouter = require("./Router/Resume_Route")
+const RequestCallbackRouter = require("./Router/Request_Route")
 const cookieParser = require("cookie-parser")
 const cors = require('cors')
 const PORT = process.env.PORT
@@ -16,6 +17,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use("/api", AuthRouter)
 app.use("/api/user", ResumeRouter)
+app.use("/api/requestcallback", RequestCallbackRouter)
 
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to CareerGrid" })

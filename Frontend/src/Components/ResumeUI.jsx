@@ -20,7 +20,7 @@ const ResumeUI = ({ userResume }) => {
     const handleDeleteResume = async () => {
         try {
             const res = await axios.delete(`${BASE_URL}/api/user/delete/resume`, { withCredentials: true })
-            console.log(res)
+            // console.log(res)
             dispatch(clearResume(userResume))
             if (res.status === 200) {
                 toast.success("Resume Deleted")

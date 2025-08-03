@@ -29,7 +29,7 @@ const AppWrapper = () => {
     const checkAuth = async () => {
       try {
         const res = await axios.get(`${BASE_URL}/api/user`, { withCredentials: true })
-        console.log("resfrom get", res)
+        // console.log("resfrom get", res)
         dispatch(addUser(res.data.user))
       } catch (error) {
         console.log("Not logged in, or session expired");

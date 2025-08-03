@@ -15,19 +15,19 @@ const UpdateExistingResume = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const userResume = useSelector((store) => store.resume)
-    console.log("am i getting", userResume)
+    // console.log("am i getting", userResume)
     useEffect(() => {
         if (userResume) {
             setData(userResume)
         }
     }, [userResume])
-    console.log("this is local state data", data)
+    // console.log("this is local state data", data)
 
     const handleUpdateResume = async (formdata) => {
-        console.log("formdata", formdata)
+        // console.log("formdata", formdata)
         try {
             const res = await axios.post(`${BASE_URL}/api/user/resume`, formdata, { withCredentials: true })
-            console.log("update resume", res)
+            // console.log("update resume", res)
             if (res.status === 200) {
                 dispatch(addResume(res.data.resume))
                 navigate("/dashboard")

@@ -13,7 +13,7 @@ const Header = () => {
     const userResume = useSelector((store) => store.resume)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    console.log("data", userData)
+    // console.log("data", userData)
 
     const handleLogout = async () => {
         try {
