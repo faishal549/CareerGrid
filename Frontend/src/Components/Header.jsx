@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios"
-import { removeUser } from "../utils/store/userSlice";
+import { addUser, removeUser } from "../utils/store/userSlice";
 import { toast } from 'react-toastify';
 import { clearResume } from "../utils/store/resumeSlice";
 const BASE_URL = import.meta.env.VITE_BASE_URL
@@ -32,6 +32,42 @@ const Header = () => {
             console.log(error)
         }
     }
+
+    const handleFileUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append('photo', file);
+
+        try {
+            const res = await axios.put(`${BASE_URL}/api/upload-photo`, formData, {
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            if (res.status === 200) {
+                const newPhotoUrl = res.data.user.photo;
+
+                dispatch(addUser({
+                    ...userData,
+                    photo: newPhotoUrl
+                }));
+
+                toast.success("Profile photo updated!");
+                setDropdownOpen(false);
+            } else {
+                toast.error("Upload failed");
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error("Upload failed");
+        }
+    };
+
+
     return (
         <>
             <header className="flex items-center justify-between px-6  bg-base-100 text-base-content shadow-md relative">
@@ -45,21 +81,21 @@ const Header = () => {
                 </div>
 
 
-  
 
-  <label className="label cursor-pointer">
-   
-    <input
-      type="checkbox"
-      className="toggle"
-      defaultChecked={localStorage.getItem("theme") === "dark"}
-      onChange={(e) => {
-        const newTheme = e.target.checked ? "dark" : "light";
-        document.documentElement.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
-      }}
-    />
-  </label>
+
+                <label className="label cursor-pointer">
+
+                    <input
+                        type="checkbox"
+                        className="toggle"
+                        defaultChecked={localStorage.getItem("theme") === "dark"}
+                        onChange={(e) => {
+                            const newTheme = e.target.checked ? "dark" : "light";
+                            document.documentElement.setAttribute("data-theme", newTheme);
+                            localStorage.setItem("theme", newTheme);
+                        }}
+                    />
+                </label>
 
 
 
@@ -113,18 +149,31 @@ const Header = () => {
 
                     >
                         {/* {userData?.firstname} {userData?.lastname} ▼ */}
-                        <img src={userData?.photo} alt="profileImg" className="w-10 h-10" />
+                        <img src={userData?.photo} alt="profileImg" className="w-10 h-10 rounded-full" />
                     </button>
 
                     {dropdownOpen && (
                         <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-md z-50">
-                            <Link
+                            {/* <Link
 
                                 className="block px-4 py-2 hover:bg-gray-100 text-gray-800"
                                 onClick={() => setDropdownOpen(false)}
+                            > */}
+                            <label
+                                htmlFor="upload-photo"
+                                className="block w-full px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer"
                             >
-                                Profile
-                            </Link>
+                                Upload Photo
+                                <input
+                                    id="upload-photo"
+                                    key={Date.now()} // Force reset input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleFileUpload}
+                                    className="hidden"
+                                />
+                            </label>
+
                             <button className=" cursor-pointer w-full text-left px-4 py-2 hover:bg-gray-100 text-gray-800" onClick={handleLogout}
                             >
                                 Logout

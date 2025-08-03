@@ -20,11 +20,6 @@ const ProfileCard = () => {
                 <p className="text-gray-600 text-lg mt-1">{userData.email}</p>
                 <p className="text-gray-600 text-lg">{userData.contact}</p>
 
-                <div className="mt-4">
-                    <button className="bg-indigo-700 text-white px-4 py-2 rounded-lg hover:bg-indigo-800 transition-all">
-                        Edit Profile
-                    </button>
-                </div>
             </div>
         </div>
     );

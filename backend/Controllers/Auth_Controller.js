@@ -89,6 +89,31 @@ const userData = async (req, res) => {
     }
 }
 
+const uploadProfilePhoto = async (req, res) => {
+    try {
+        const userId = req.user.id; // from authMiddleware
+        const photoUrl = req.file.path; // Multer + Cloudinary gives this
 
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { photo: photoUrl },
+            { new: true }
+        );
 
-module.exports = { register, login, logout, userData }
+        res.status(200).json({
+            message: 'Profile photo updated successfully',
+            user: {
+                id: updatedUser._id,
+                firstname: updatedUser.firstname,
+                lastname: updatedUser.lastname,
+                email: updatedUser.email,
+                contact: updatedUser.contact,
+                photo: updatedUser.photo,
+            },
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Error uploading photo', error });
+    }
+};
+
+module.exports = { register, login, logout, userData, uploadProfilePhoto }

@@ -21,17 +21,17 @@ const ResumeTemplate = forwardRef(({ userResume }, ref) => {
       <h2 className="resume-section-title">Summary</h2>
       <p className="resume-summary-text">{summary}</p>
 
-      <h2 className="resume-section-title">Skills</h2>
-      <ul className="resume-list">
+      <h2 className="resume-section-title capitalize">Skills</h2>
+      <ul className="resume-list capitalize">
         {skills?.map((s, i) => <li key={i}>{s}</li>)}
       </ul>
 
       <h2 className="resume-section-title">Experience</h2>
       {experience?.map((exp, i) => (
         <div key={i} className="resume-project">
-          <div className="resume-company">{exp.company}</div>
-          <div className="resume-role">{exp.role}</div>
-          <div>{exp.description}</div>
+          <div className="resume-company capitalize">{exp.company}</div>
+          <div className="resume-role capitalize">{exp.role}</div>
+          <div className="capitalize">{exp.description}</div>
           <div className="resume-duration">{exp.duration}</div>
         </div>
       ))}
@@ -40,7 +40,7 @@ const ResumeTemplate = forwardRef(({ userResume }, ref) => {
       {education?.map((edu, i) => (
         <div key={i} className="resume-edu">
           <div>
-            <span className="resume-company">{edu.degree}</span> — {edu.institution} <span className="resume-duration">({edu.year})</span>
+            <span className="resume-company capitalize">{edu.degree}</span> — {edu.institution} <span className="resume-duration">({edu.year})</span>
           </div>
         </div>
       ))}
@@ -48,7 +48,7 @@ const ResumeTemplate = forwardRef(({ userResume }, ref) => {
       <h2 className="resume-section-title">Projects</h2>
       {projects?.map((proj, i) => (
         <div key={i} className="resume-project">
-          <div className="resume-company">{proj.title}</div>
+          <div className="resume-company capitalize">{proj.title}</div>
           <div>{proj.description}</div>
           {proj.github && (
             <div>
