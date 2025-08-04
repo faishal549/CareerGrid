@@ -5,6 +5,7 @@ import axios from "axios"
 import { addUser, removeUser } from "../utils/store/userSlice";
 import { toast } from 'react-toastify';
 import { clearResume } from "../utils/store/resumeSlice";
+import logo from "../assets/output-onlinepngtools.png"
 const BASE_URL = import.meta.env.VITE_BASE_URL
 
 const Header = () => {
@@ -73,7 +74,7 @@ const Header = () => {
             <header className="flex items-center justify-between px-6  bg-base-100 text-base-content shadow-md relative">
                 <div className="logo">
                     <Link to="/">
-                        <img src="/public/output-onlinepngtools.png"
+                        <img src={logo}
                             alt="logo"
                             className="w-30 h-30" />
                     </Link>

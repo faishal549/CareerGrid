@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { feedbacks } from "../utils/constent.js"
 import axios from "axios"
 const BASE_URL = import.meta.env.VITE_BASE_URL
+import heroImg from "../assets/heroimage.svg"
 import { toast } from 'react-toastify';
 
 
@@ -59,7 +60,7 @@ const Body = () => {
                         <p className="text-wrap text-lg text-cyan-400 text-shad2ow-accent-content">Whether you're a fresher or experienced, CareerGrid gives you the tools to showcase your skills and get noticed by recruiters.</p>
                     </div>
                     <div className="w-full flex justify-center">
-                        <img src="./public/heroimage.svg" alt="heroimage" className="" />
+                        <img src={heroImg} alt="heroimage" className="" />
                     </div>
                 </section>
 
