@@ -10,7 +10,7 @@ const cors = require('cors')
 const PORT = process.env.PORT
 
 app.use(cors({
-    origin: ["http://localhost:5173", "https://career-grid.vercel.app"],
+    origin: ["http://localhost:5173", "https://career-grid.vercel.app", "https://velvety-praline-f5baf6.netlify.app"],
     credentials: true
 }))
 app.use(express.json())
