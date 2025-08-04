@@ -59,7 +59,7 @@ const Body = () => {
                         <p className="text-wrap text-lg text-cyan-400 text-shad2ow-accent-content">Whether you're a fresher or experienced, CareerGrid gives you the tools to showcase your skills and get noticed by recruiters.</p>
                     </div>
                     <div className="w-full flex justify-center">
-                        <img src="./src/assets/heroimage.svg" alt="heroimage" className="" />
+                        <img src="./public/heroimage.svg" alt="heroimage" className="" />
                     </div>
                 </section>
 
