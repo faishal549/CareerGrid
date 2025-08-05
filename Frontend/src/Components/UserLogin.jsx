@@ -1,11 +1,12 @@
 import { useState } from "react"
 import validator from "../utils/validator"
-import axios from "axios"
+
 import { useDispatch } from "react-redux"
 import { addUser } from "../utils/store/userSlice"
 import { useNavigate } from "react-router-dom"
 import { toast } from 'react-toastify';
-const BASE_URL = import.meta.env.VITE_BASE_URL
+import axiosInstance from "../utils/axiosInstance"
+// const BASE_URL = import.meta.env.VITE_BASE_URL
 
 const UserLogin = () => {
     const [isSignup, setIsSignup] = useState(false)
@@ -27,7 +28,7 @@ const UserLogin = () => {
             const message = validator(user)
             setErrMessage(message)
             if (message) return
-            const res = await axios.post(`${BASE_URL}/api/register`, user, { withCredentials: true })
+            const res = await axiosInstance.post("/api/register", user)
             // console.log(res)
             dispatch(addUser(res.data.user))
             if (res.status === 200) {
@@ -48,7 +49,7 @@ const UserLogin = () => {
     const handleSignin = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post(`${BASE_URL}/api/login`, user, { withCredentials: true })
+            const res = await axiosInstance.post("/api/login", user)
             // console.log(res)
             dispatch(addUser(res.data.user))
             if (res.status === 200) {

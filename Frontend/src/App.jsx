@@ -10,11 +10,12 @@ import { Provider } from "react-redux"
 import Dashboard from './Components/Dashboard'
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+
 import { addUser } from './utils/store/userSlice';
 import TabForm from './Components/TabForm';
 import UpdateExistingResume from './Components/UpdateExistingResume';
-// import ResumePDF from './Components/ResumePDF';
+import axiosInstance from './utils/axiosInstance';
+
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
 
@@ -28,7 +29,7 @@ const AppWrapper = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get(`${BASE_URL}/api/user`, { withCredentials: true })
+        const res = await axiosInstance.get(`${BASE_URL}/api/user`)
         // console.log("resfrom get", res)
         dispatch(addUser(res.data.user))
       } catch (error) {

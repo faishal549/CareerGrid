@@ -4,11 +4,12 @@ import ResumeTemplate from "./ResumeTemplate";
 import DownloadPdfButton from "./DownloadPdfButton";
 import { Link, useNavigate } from "react-router-dom";
 import { useRef } from "react";
-import axios from "axios"
+
 import { useDispatch } from "react-redux";
 import { clearResume } from "../utils/store/resumeSlice";
 import { toast } from "react-toastify";
-const BASE_URL = import.meta.env.VITE_BASE_URL
+import axiosInstance from "../utils/axiosInstance";
+// const BASE_URL = import.meta.env.VITE_BASE_URL
 
 
 
@@ -19,7 +20,7 @@ const ResumeUI = ({ userResume }) => {
     const navigate = useNavigate()
     const handleDeleteResume = async () => {
         try {
-            const res = await axios.delete(`${BASE_URL}/api/user/delete/resume`, { withCredentials: true })
+            const res = await axiosInstance.delete("/api/user/delete/resume")
             // console.log(res)
             dispatch(clearResume(userResume))
             if (res.status === 200) {

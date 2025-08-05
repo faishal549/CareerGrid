@@ -3,11 +3,12 @@ import useTabs from "../utils/useTabs"
 import TabForm from "./TabForm"
 import { useSelector, useDispatch } from "react-redux"
 import { useState } from "react"
-import axios from "axios"
+
 import { addResume } from "../utils/store/resumeSlice"
 import { toast } from "react-toastify"
-const BASE_URL = import.meta.env.VITE_BASE_URL
+// const BASE_URL = import.meta.env.VITE_BASE_URL
 import { useNavigate } from "react-router-dom"
+import axiosInstance from "../utils/axiosInstance"
 
 const UpdateExistingResume = () => {
     // const { data, setData, error, setError, tabs } = useTabs()
@@ -26,7 +27,7 @@ const UpdateExistingResume = () => {
     const handleUpdateResume = async (formdata) => {
         // console.log("formdata", formdata)
         try {
-            const res = await axios.post(`${BASE_URL}/api/user/resume`, formdata, { withCredentials: true })
+            const res = await axiosInstance.post("/api/user/resume", formdata)
             // console.log("update resume", res)
             if (res.status === 200) {
                 dispatch(addResume(res.data.resume))

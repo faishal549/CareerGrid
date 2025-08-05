@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import axios from "axios"
+
 import { addUser, removeUser } from "../utils/store/userSlice";
 import { toast } from 'react-toastify';
 import { clearResume } from "../utils/store/resumeSlice";
 import logo from "../assets/output-onlinepngtools.png"
-const BASE_URL = import.meta.env.VITE_BASE_URL
+import axiosInstance from "../utils/axiosInstance";
+// const BASE_URL = import.meta.env.VITE_BASE_URL
 
 const Header = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -18,7 +19,7 @@ const Header = () => {
 
     const handleLogout = async () => {
         try {
-            const res = await axios.post(`${BASE_URL}/api/logout`, {}, { withCredentials: true })
+            const res = await axiosInstance.post("/api/logout", {})
             dispatch(removeUser())
             if (res.status === 200) {
                 dispatch(clearResume(userResume))
@@ -42,8 +43,7 @@ const Header = () => {
         formData.append('photo', file);
 
         try {
-            const res = await axios.put(`${BASE_URL}/api/upload-photo`, formData, {
-                withCredentials: true,
+            const res = await axiosInstance.put("/api/upload-photo", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

@@ -2,10 +2,11 @@ import ProfileCard from "./ProfileCard"
 import ResumeSection from "./ResumeSection"
 import { useDispatch, useSelector } from "react-redux"
 import ResumeUI from "./ResumeUI"
-const BASE_URL = import.meta.env.VITE_BASE_URL
-import axios from "axios"
+// const BASE_URL = import.meta.env.VITE_BASE_URL
+
 import { addResume } from "../utils/store/resumeSlice"
 import { useEffect } from "react"
+import axiosInstance from "../utils/axiosInstance"
 
 const Dashboard = () => {
     const dispatch = useDispatch()
@@ -13,7 +14,7 @@ const Dashboard = () => {
     useEffect(() => {
         const getMyResume = async () => {
             try {
-                const res = await axios.get(`${BASE_URL}/api/user/resume/me`, { withCredentials: true })
+                const res = await axiosInstance.get("/api/user/resume/me")
                 // console.log(res)
                 dispatch(addResume(res.data.resume))
 

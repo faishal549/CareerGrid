@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import useTabs from "../utils/useTabs.js"
-import axios from "axios"
-const BASE_URL = import.meta.env.VITE_BASE_URL
+
+// const BASE_URL = import.meta.env.VITE_BASE_URL
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { createResume } from "../utils/store/resumeSlice.js"
 import { toast } from "react-toastify"
+import axiosInstance from "../utils/axiosInstance.js"
 
 const TabForm = ({ initialData, onSubmit }) => {
     const [active, setActive] = useState(0)
@@ -32,7 +33,7 @@ const TabForm = ({ initialData, onSubmit }) => {
         } else {
             try {
 
-                const res = await axios.post(`${BASE_URL}/api/user/resume`, data, { withCredentials: true })
+                const res = await axiosInstance.post("/api/user/resume", data)
                 console.log(res)
                 dispatch(createResume(res.data.resume))
                 if (res.status === 200) {
