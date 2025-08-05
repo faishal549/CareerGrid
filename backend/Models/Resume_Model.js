@@ -35,14 +35,13 @@ const resumeSchema = new mongoose.Schema({
     },
     contact: {
         type: String,
-        minLength: 10,
         maxLength: 14,
         required: true
     },
     location: {
         type: String,
         required: true,
-        maxLength: 18,
+        maxLength: 100,
     },
     github: {
         type: String,
@@ -59,7 +58,7 @@ const resumeSchema = new mongoose.Schema({
     },
     summary: {
         type: String,
-        maxLength: 200,
+        maxLength: 300,
         trim: true,
     },
     skills: {
@@ -70,19 +69,19 @@ const resumeSchema = new mongoose.Schema({
         {
             company: {
                 type: String,
-                maxLength: 18,
+                maxLength: 50,
             },
             role: {
                 type: String,
-                maxLength: 18,
+                maxLength: 50,
             },
             duration: {
                 type: String,
-                maxLength: 20,
+                maxLength: 50,
             },
             description: {
                 type: String,
-                maxLength: 300,
+                maxLength: 500,
             }
         }
     ],
@@ -90,15 +89,15 @@ const resumeSchema = new mongoose.Schema({
         {
             institution: {
                 type: String,
-                maxLength: 18,
+                maxLength: 50,
             },
             degree: {
                 type: String,
-                maxLength: 18,
+                maxLength: 50,
             },
             year: {
                 type: String,
-                maxLength: 6,
+                maxLength: 25,
             },
         }
     ],
@@ -106,11 +105,11 @@ const resumeSchema = new mongoose.Schema({
         {
             title: {
                 type: String,
-                maxLength: 18,
+                maxLength: 50,
             },
             description: {
                 type: String,
-                maxLength: 300,
+                maxLength: 500,
             },
             github: {
                 type: String,

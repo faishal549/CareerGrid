@@ -41,7 +41,7 @@ const WorkExperience = ({ data, setData }) => {
                             <label className="block text-gray-600 mb-1">Company Name</label>
                             <input
                                 type="text"
-                                maxLength={18}
+                                maxLength={50}
                                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                                 placeholder="e.g. Google"
                                 name="company"
@@ -55,7 +55,7 @@ const WorkExperience = ({ data, setData }) => {
                             <label className="block text-gray-600 mb-1">Role</label>
                             <input
                                 type="text"
-                                maxLength={18}
+                                maxLength={50}
                                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                                 placeholder="e.g. Software Engineer"
                                 name="role"
@@ -69,7 +69,7 @@ const WorkExperience = ({ data, setData }) => {
                             <label className="block text-gray-600 mb-1">Duration</label>
                             <input
                                 type="text"
-                                maxLength={20}
+                                maxLength={25}
                                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                                 placeholder="e.g. Jan 2021 - Dec 2023"
                                 name="duration"
@@ -82,7 +82,7 @@ const WorkExperience = ({ data, setData }) => {
                         <div className="mb-2">
                             <label className="block text-gray-600 mb-1">Description</label>
                             <textarea
-                                maxLength={200}
+                                maxLength={500}
                                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none text-gray-700"
                                 rows={4}
                                 placeholder="Describe your work, tools used, achievements, etc."
