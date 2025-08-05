@@ -9,10 +9,14 @@ const cookieParser = require("cookie-parser")
 const cors = require('cors')
 const PORT = process.env.PORT
 
+const allowedOrigins = [
+    "https://your-frontend.onrender.com",
+    "http://localhost:5173"
+];
 app.use(cors({
-    origin: ["http://localhost:5173", "https://career-grid-v824.vercel.app"],
+    origin: allowedOrigins,
     credentials: true
-}))
+}));
 app.use(express.json())
 app.use(cookieParser())
 app.use("/api", AuthRouter)
