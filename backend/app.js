@@ -10,7 +10,7 @@ const cors = require('cors')
 const PORT = process.env.PORT
 
 const allowedOrigins = [
-    "https://your-frontend.onrender.com",
+    "https://careergrid-1.onrender.com",
     "http://localhost:5173"
 ];
 app.use(cors({
