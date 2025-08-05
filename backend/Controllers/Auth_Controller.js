@@ -13,7 +13,7 @@ const register = async (req, res) => {
         } else {
             const createUser = await User.create({ firstname, lastname, email, contact, password })
             const token = await createUser.generateToken()
-            res.cookie("token", token, { expires: new Date(Date.now() + 3600000), httpOnly: true, })
+            res.cookie("token", token, { expires: new Date(Date.now() + 3600000), httpOnly: true, sameSite: "None", secure: true })
             return res.status(200).json({
                 message: "Registration Successfull",
                 user: {
@@ -45,7 +45,7 @@ const login = async (req, res) => {
         const verifyPassword = await isEmailExist.comparePassword(password)
         if (verifyPassword) {
             const token = await isEmailExist.generateToken()
-            res.cookie("token", token, { expires: new Date(Date.now() + 3600000), httpOnly: true, })
+            res.cookie("token", token, { expires: new Date(Date.now() + 3600000), httpOnly: true, sameSite: "None", secure: true })
             return res.status(200).json(
                 {
                     message: "Logged successfully!",
