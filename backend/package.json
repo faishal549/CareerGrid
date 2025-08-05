@@ -5,8 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-backend": "cd backend && npm install",
-    "start-backend": "cd backend && npm start"
+    "start": "node app.js"
   },
   "author": "faishal",
   "license": "ISC",
