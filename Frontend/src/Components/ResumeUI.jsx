@@ -56,14 +56,14 @@ const ResumeUI = ({ userResume }) => {
                     </li>
                 </ul>
                 {showConfirm && (
-                    <div role="alert" className="fixed top-10 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md px-4 bg-gray-300">
+                    <div role="alert" className="fixed top-0 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md px-4 bg-blue-200 rounded-2xl p-5">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info h-6 w-6 shrink-0">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
-                        <span>Are you sure you want to delete your resume ?</span>
+                        <span className="text-blue-500 font-bold">Are you sure you want to delete your resume ?</span>
                         <div>
-                            <button className="btn btn-sm" onClick={() => setShowConfirm(false)}>Cancel</button>
-                            <button className="btn btn-sm btn-primary" onClick={handleDeleteResume}>Delete</button>
+                            <button className="btn btn-sm mx-5 my-2" onClick={() => setShowConfirm(false)}>Cancel</button>
+                            <button className="btn btn-sm btn-primary mx-5 my-2" onClick={handleDeleteResume}>Delete</button>
                         </div>
                     </div>
                 )}

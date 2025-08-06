@@ -58,7 +58,7 @@ const resumeSchema = new mongoose.Schema({
     },
     summary: {
         type: String,
-        maxLength: 300,
+        maxLength: 500,
         trim: true,
     },
     skills: {

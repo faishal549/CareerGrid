@@ -83,6 +83,14 @@ const Project = ({ data, setData }) => {
                             value={data.projects[index].description}
                             onChange={(e) => handleInputChange(e, index)}
                         ></textarea>
+                        <p
+                            className={`text-sm text-right mt-1 ${500 - data.projects[index].description.length < 50
+                                ? "text-red-500"
+                                : "text-gray-500"
+                                }`}
+                        >
+                            {500 - data.projects[index].description.length}/500 characters remaining
+                        </p>
                     </div>
                 </div>
             ))}

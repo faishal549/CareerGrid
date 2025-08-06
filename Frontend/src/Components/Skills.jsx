@@ -68,11 +68,20 @@ const Skills = ({ data, setData, error }) => {
                     <textarea
                         className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-700"
                         rows={5}
+                        maxLength={500}
                         placeholder="Write a brief summary about your experience, strengths, and goals."
                         name="summary"
                         value={summary}
                         onChange={handleInputChange}
                     ></textarea>
+                    <p
+                        className={`text-sm text-right mt-1 ${500 - summary.length < 50
+                            ? "text-red-500"
+                            : "text-gray-500"
+                            }`}
+                    >
+                        {500 - summary.length}/500 characters remaining
+                    </p>
                     <p className="text-sm text-red-600 capitalize">{error.summary}</p>
                 </div>
 

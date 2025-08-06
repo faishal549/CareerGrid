@@ -80,18 +80,18 @@ const UserLogin = () => {
                 <form className="flex flex-col px-15" onSubmit={isSignup ? handleSignup : handleSignin}>
                     {isSignup && (
                         <>
-                            <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-5">FIRSTNAME</label>
+                            <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-1">FIRSTNAME</label>
                             <input type="text"
-                                className="border-0 outline-0 bg-gray-800 px-3 py-3 rounded-sm text-gray-300 text-lg my-2 font-medium w-lg h-[2.5rem] mx-auto"
+                                className="w-full h-[2.5rem] px-3 pr-12 bg-gray-800 text-gray-300 text-lg rounded-sm border-none outline-none"
                                 value={user.firstname}
                                 name="firstname"
                                 autoComplete="off"
                                 onChange={(e) => setUser({ ...user, [e.target.name]: e.target.value })}
                             />
 
-                            <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-5">LASTNAME</label>
+                            <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-1">LASTNAME</label>
                             <input type="text"
-                                className="border-0 outline-0 bg-gray-800 px-3 py-3 rounded-sm text-gray-300 text-lg my-2 font-medium w-lg h-[2.5rem] mx-auto"
+                                className="w-full h-[2.5rem] px-3 pr-12 bg-gray-800 text-gray-300 text-lg rounded-sm border-none outline-none"
                                 value={user.lastname}
                                 name="lastname"
                                 autoComplete="off"
@@ -99,18 +99,18 @@ const UserLogin = () => {
                             />
                         </>)}
 
-                    <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-5">EMAIL</label>
+                    <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-1">EMAIL</label>
                     <input type="text"
-                        className="border-0 outline-0 bg-gray-800 px-3 py-3 rounded-sm text-gray-300 text-lg my-2 font-medium w-lg h-[2.5rem] mx-auto"
+                        className="w-full h-[2.5rem] px-3 pr-12 bg-gray-800 text-gray-300 text-lg rounded-sm border-none outline-none"
                         value={user.email}
                         name="email"
                         autoComplete="off"
                         onChange={(e) => setUser({ ...user, [e.target.name]: e.target.value })}
                     />
                     {isSignup && (<>
-                        <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-5">CONTACT</label>
+                        <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-1">CONTACT</label>
                         <input type="text"
-                            className="border-0 outline-0 bg-gray-800 px-3 py-3 rounded-sm text-gray-300 text-lg my-2 font-medium w-lg h-[2.5rem] mx-auto"
+                            className="w-full h-[2.5rem] px-3 pr-12 bg-gray-800 text-gray-300 text-lg rounded-sm border-none outline-none"
                             value={user.contact}
                             name="contact"
                             autoComplete="off"
@@ -120,28 +120,31 @@ const UserLogin = () => {
                     </>)}
 
 
-                    <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-5">PASSWORD</label>
-                    <input type={showPassword ? "text" : "password"}
-                        className="border-0 outline-0 bg-gray-800 px-3 py-3 rounded-sm text-gray-300 text-lg my-2 font-medium w-lg h-[2.5rem] mx-auto"
-                        value={user.password}
-                        name="password"
-                        autoComplete="off"
-                        onChange={(e) => setUser({ ...user, [e.target.name]: e.target.value })}
-                    />
-                    <span
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute inset-y-0 right-3 flex items-center text-blue-300 hover:text-blue-500 cursor-pointer text-sm select-none"
-                    >
-                        {showPassword ? "Hide" : "Show"}
-                    </span>
+                    <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-1">PASSWORD</label>
+                    <div className="relative w-full mx-auto">
+                        <input type={showPassword ? "text" : "password"}
+
+                            className="w-full h-[2.5rem] px-3 pr-12 bg-gray-800 text-gray-300 text-lg rounded-sm border-none outline-none"
+                            value={user.password}
+                            name="password"
+                            autoComplete="off"
+                            onChange={(e) => setUser({ ...user, [e.target.name]: e.target.value })}
+                        />
+                        <span
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute inset-y-0 right-3 flex items-center text-blue-300 hover:text-blue-500 cursor-pointer text-sm select-none"
+                        >
+                            {showPassword ? "Hide" : "Show"}
+                        </span>
+                    </div>
 
 
-                    <button type="submit" disabled={isSubmitting} className="text-center px-4 py-2 bg-blue-500 font-bold w-lg mx-auto rounded-sm text-gray-300 tracking-wider cursor-pointer hover:bg-blue-600
+                    <button type="submit" disabled={isSubmitting} className="text-center px-4 py-2 my-4 bg-blue-500 font-bold w-lg mx-auto rounded-sm text-gray-300 tracking-wider cursor-pointer hover:bg-blue-600
                      "> {isSubmitting ? "Please wait..." : "SUBMIT"}</button>
                     <p className="text-center text-red-600 py-2 font-semibold">{errMessage}</p>
                     <p className="text-center text-red-600 py-2 font-semibold">{error}</p>
                 </form>
-                <p className="text-center my-5 text-gray-300 font-bold hover:text-blue-600 cursor-pointer" onClick={() => setIsSignup(!isSignup)}>{isSignup ? "Existing user  ? Login" : "New User ? Signup"}</p>
+                <p className="text-center  text-gray-300 font-bold hover:text-blue-600 cursor-pointer" onClick={() => setIsSignup(!isSignup)}>{isSignup ? "Existing user  ? Login" : "New User ? Signup"}</p>
             </section>
         </>
     )

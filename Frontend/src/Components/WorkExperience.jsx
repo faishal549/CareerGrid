@@ -90,6 +90,14 @@ const WorkExperience = ({ data, setData }) => {
                                 value={data.experience[index].description}
                                 onChange={(e) => handleInputChange(e, index)}
                             ></textarea>
+                            <p
+                                className={`text-sm text-right mt-1 ${500 - data.experience[index].description.length < 50
+                                        ? "text-red-500"
+                                        : "text-gray-500"
+                                    }`}
+                            >
+                                {500 - data.experience[index].description.length}/500 characters remaining
+                            </p>
                         </div>
                     </div>
                 ))}
