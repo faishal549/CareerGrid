@@ -125,7 +125,7 @@ const Header = () => {
                         <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-md z-50">
                             <Link
                                 to="/userlogin"
-                                className="block px-4 py-2 hover:bg-gray-100 text-gray-800"
+                                className="block px-4 py-2 cursor-pointer hover:bg-gray-100 text-gray-800"
                                 onClick={() => setDropdownOpen(false)}
                             >
                                 Jobseeker

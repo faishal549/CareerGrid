@@ -10,6 +10,7 @@ import axiosInstance from "../utils/axiosInstance"
 
 const UserLogin = () => {
     const [isSignup, setIsSignup] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
     const [user, setUser] = useState({
         firstname: "",
         lastname: "",
@@ -23,7 +24,8 @@ const UserLogin = () => {
     const navigate = useNavigate()
     const handleSignup = async (e) => {
         e.preventDefault()
-
+        if (isSubmitting) return
+        setIsSubmitting(true)
         try {
             const message = validator(user)
             setErrMessage(message)
@@ -41,6 +43,8 @@ const UserLogin = () => {
         } catch (error) {
             console.log(error)
             setError(error?.response?.data?.message || "Something went wrong")
+        } finally {
+            setIsSubmitting(false)
         }
 
 
@@ -48,6 +52,8 @@ const UserLogin = () => {
 
     const handleSignin = async (e) => {
         e.preventDefault()
+        if (isSubmitting) return
+        setIsSubmitting(true)
         try {
             const res = await axiosInstance.post("/api/login", user)
             // console.log(res)
@@ -61,6 +67,8 @@ const UserLogin = () => {
         } catch (error) {
             console.log(error)
             setError(error?.response?.data?.message || "Something went wrong")
+        } finally {
+            setIsSubmitting(false)
         }
     }
 
@@ -121,7 +129,8 @@ const UserLogin = () => {
                     />
 
 
-                    <button type="submit" className="text-center px-4 py-2 bg-blue-500 font-bold w-lg mx-auto rounded-sm text-gray-300 tracking-wider cursor-pointer hover:bg-blue-600">SUBMIT</button>
+                    <button type="submit" disabled={isSubmitting} className="text-center px-4 py-2 bg-blue-500 font-bold w-lg mx-auto rounded-sm text-gray-300 tracking-wider cursor-pointer hover:bg-blue-600
+                     "> {isSubmitting ? "Please wait..." : "SUBMIT"}</button>
                     <p className="text-center text-red-600 py-2 font-semibold">{errMessage}</p>
                     <p className="text-center text-red-600 py-2 font-semibold">{error}</p>
                 </form>
