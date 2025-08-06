@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-
 import { addUser, removeUser } from "../utils/store/userSlice";
 import { toast } from 'react-toastify';
 import { clearResume } from "../utils/store/resumeSlice";

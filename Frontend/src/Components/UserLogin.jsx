@@ -20,6 +20,7 @@ const UserLogin = () => {
     })
     const [error, setError] = useState("")
     const [errMessage, setErrMessage] = useState(null)
+    const [showPassword, setShowPassword] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const handleSignup = async (e) => {
@@ -120,13 +121,19 @@ const UserLogin = () => {
 
 
                     <label className="text-gray-300 space-x-2 font-semibold font-sans tracking-wider px-5">PASSWORD</label>
-                    <input type="password"
+                    <input type={showPassword ? "text" : "password"}
                         className="border-0 outline-0 bg-gray-800 px-3 py-3 rounded-sm text-gray-300 text-lg my-2 font-medium w-lg h-[2.5rem] mx-auto"
                         value={user.password}
                         name="password"
                         autoComplete="off"
                         onChange={(e) => setUser({ ...user, [e.target.name]: e.target.value })}
                     />
+                    <span
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute inset-y-0 right-3 flex items-center text-blue-300 hover:text-blue-500 cursor-pointer text-sm select-none"
+                    >
+                        {showPassword ? "Hide" : "Show"}
+                    </span>
 
 
                     <button type="submit" disabled={isSubmitting} className="text-center px-4 py-2 bg-blue-500 font-bold w-lg mx-auto rounded-sm text-gray-300 tracking-wider cursor-pointer hover:bg-blue-600

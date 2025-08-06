@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 const ProfileCard = () => {
     const userData = useSelector((store) => store.user);
 
+    if (!userData) return null
+
     return (
         <div className="bg-white rounded-2xl shadow-lg border p-6 flex items-center gap-6 my-30">
             {/* Image Section */}
