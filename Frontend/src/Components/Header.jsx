@@ -143,7 +143,7 @@ const Header = () => {
                     )}
                 </div>
                 }
-                {(userData) && <div className="relative">
+                {(userData) && userData.photo && <div className="relative">
 
                     <button
                         onClick={() => setDropdownOpen(!dropdownOpen)}

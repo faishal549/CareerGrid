@@ -3,7 +3,7 @@
 import ResumeTemplate from "./ResumeTemplate";
 import DownloadPdfButton from "./DownloadPdfButton";
 import { Link, useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { useDispatch } from "react-redux";
 import { clearResume } from "../utils/store/resumeSlice";
@@ -18,6 +18,7 @@ const ResumeUI = ({ userResume }) => {
     const resumeRef = useRef(null);
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [showConfirm, setShowConfirm] = useState(false)
     const handleDeleteResume = async () => {
         try {
             const res = await axiosInstance.delete("/api/user/delete/resume")
@@ -51,9 +52,21 @@ const ResumeUI = ({ userResume }) => {
                         <button className="btn btn-info">Share Resume</button>
                     </li>
                     <li>
-                        <button className="btn btn-error" onClick={handleDeleteResume}>Delete</button>
+                        <button className="btn btn-error" onClick={() => setShowConfirm(true)}>Delete</button>
                     </li>
                 </ul>
+                {showConfirm && (
+                    <div role="alert" className="alert alert-vertical sm:alert-horizontal">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info h-6 w-6 shrink-0">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span>Are you sure you want to delete your resume ?</span>
+                        <div>
+                            <button className="btn btn-sm" onClick={() => setShowConfirm(false)}>Cancel</button>
+                            <button className="btn btn-sm btn-primary" onClick={handleDeleteResume}>Delete</button>
+                        </div>
+                    </div>
+                )}
             </aside>
         </div>
     );
