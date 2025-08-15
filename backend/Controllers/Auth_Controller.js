@@ -73,12 +73,16 @@ const login = async (req, res) => {
 
 const logout = async (req, res) => {
     try {
-        res.cookie("token", null, { expires: new Date(Date.now()) })
-        return res.status(200).json({ message: "you are logout session expired" })
+        res.clearCookie("token", {
+            httpOnly: true,
+            sameSite: "None", // must match login case exactly
+            secure: true
+        });
+        return res.status(200).json({ message: "You are logged out" });
     } catch (error) {
-        return res.status(400).json({ message: error.message })
+        return res.status(400).json({ message: error.message });
     }
-}
+};
 
 const userData = async (req, res) => {
     try {
